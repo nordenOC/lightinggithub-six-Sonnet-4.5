@@ -13,8 +13,7 @@
 
 本聯盟整合**6 個獨立 AI 開發倉庫**，涵蓋：
 
-| 庫名 | 技術棧 | 主要功能 | 管理方 |
-|------|-------|--------|--------|
+||-------|--------|--------|
 | **LIGHTNING-ACODE** | Python/DeepSeek | 代碼自動生成 + 部署 | DeepSeek 體系 |
 | **AI-Esperanto-Academy** | Google AI/ML | 多語言 AI 教育框架 | Google AI 體系 |
 | **GitHub-Pages** | JavaScript/TTS | 靜態資源 + 文本轉語音引擎 | GTP_Ai 體系 |
@@ -317,3 +316,123 @@ frontend → 後端核心 → Vault → 運行時結果
 ---
 
 總司令，如果您願意，我可以幫您畫出一張零痕跡完整資料流與四庫串聯架構圖，
+針對定價頁面:您提到「沒有免費7天立即 跳收費用」,如需在前端加入「7天後自動 跳轉付費頁面」或「顯示試用到期倒數」的 JavaScript 程式碼,請告訴我,我可以立即撰 寫。
+
+商業合作方案:您整理的「帝國六庫聯盟」提 案非常完整,若需協助製作簡報或模擬 Demo 流程,我也能配合。
+
+請總司令指示下一步方向!针对您的定价页面需求，我将提供两种前端实现方案：试用倒计时显示 和 到期自动跳转。您可以根据需要选择或组合使用。
+
+---
+
+🕒 方案一：显示7天试用倒计时，到期自动跳转
+
+效果说明
+
+· 用户首次访问页面时，记录当前时间到 localStorage。
+· 每次加载页面时，计算剩余试用天数/小时，并显示倒计时。
+· 当剩余时间 ≤ 0 时，自动跳转到付费页面（例如 /pricing 或指定的订阅链接）。
+
+JavaScript 代码（可嵌入 HTML 的 <script> 标签内）
+
+```html
+<script>
+(function() {
+  // 配置参数
+  const TRIAL_DAYS = 7;                          // 试用天数
+  const STORAGE_KEY = 'trial_start_time';        // localStorage 键名
+  const REDIRECT_URL = '/subscribe';              // 到期跳转地址（可修改）
+
+  // 获取或初始化试用开始时间
+  let startTime = localStorage.getItem(STORAGE_KEY);
+  if (!startTime) {
+    startTime = Date.now();
+    localStorage.setItem(STORAGE_KEY, startTime);
+  }
+
+  // 计算剩余毫秒数
+  const endTime = parseInt(startTime) + TRIAL_DAYS * 24 * 60 * 60 * 1000;
+  const now = Date.now();
+  const remainingMs = endTime - now;
+
+  // 倒计时显示元素（假设页面中有 id="trial-countdown" 的元素）
+  const countdownEl = document.getElementById('trial-countdown');
+  if (countdownEl) {
+    if (remainingMs <= 0) {
+      countdownEl.innerHTML = '试用已结束';
+      // 到期自动跳转（延迟1秒，让用户看到提示）
+      setTimeout(() => { window.location.href = REDIRECT_URL; }, 1000);
+    } else {
+      // 计算天、时、分、秒
+      const days = Math.floor(remainingMs / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((remainingMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((remainingMs % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((remainingMs % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = `${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
+
+      // 每秒更新倒计时
+      setInterval(() => {
+        const now = Date.now();
+        const remaining = endTime - now;
+        if (remaining <= 0) {
+          countdownEl.innerHTML = '试用已结束';
+          window.location.href = REDIRECT_URL;
+          return;
+        }
+        const d = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        const h = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((remaining % (1000 * 60)) / 1000);
+        countdownEl.innerHTML = `${d}天 ${h}小时 ${m}分 ${s}秒`;
+      }, 1000);
+    }
+  }
+})();
+</script>
+```
+
+在页面中添加显示位置
+
+在您希望显示倒计时的地方插入 HTML 元素，例如：
+
+```html
+<div class="trial-notice">
+  您的7天试用剩余：<span id="trial-countdown">加载中...</span>
+</div>
+```
+
+---
+
+🚀 方案二：直接显示“没有免费试用，立即付费”按钮（无倒计时）
+
+如果您希望直接表达“无免费试用，立即付费”，可以简单地在页面中添加一个醒目的按钮，并移除任何试用提示。但您之前提到“7天”，所以方案一更符合。
+
+---
+
+🔒 注意事项
+
+1. 前端记录不可靠：用户清除 localStorage 或换设备会重新计时。若需真正控制试用期，应结合后端用户登录状态。
+2. 跳转目标：请将 REDIRECT_URL 修改为您实际的付费页面或支付链接。
+3. 样式适配：根据您的霓虹赛博朋克风格，可给倒计时元素添加发光动画（CSS 后续可调整）。
+
+---
+
+📄 集成到现有定价页面示例
+
+假设您的 goddess_ai_pricing.html 文件中已有定价卡片，可以在适当位置（如页面顶部或每个套餐卡片下方）插入上述代码。确保 id="trial-countdown" 的元素存在。
+
+---
+
+💼 关于商业合作方案
+
+您整理的「帝國六庫聯盟」提案非常专业。如果需要：
+
+· 制作PPT简报：我可以提供内容大纲、页面结构建议及视觉风格参考。
+· 模拟Demo流程：可协助设计一个演示脚本，展示92 AI单位如何调度Uber Eats订单，包含前后端交互动效。
+· 谈判材料：针对Uber Eats的ROI计算表、技术白皮书摘要等。
+
+请指示具体需求，我会全力配合。
+
+---
+
+⚡️ 请确认以上代码是否符合您的需求，或需要进一步定制（例如多语言支持、暂停跳转等）。
